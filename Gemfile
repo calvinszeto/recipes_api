@@ -22,6 +22,7 @@ gem 'puma', '~> 3.0'
 group :development, :test do
   gem 'pry'
   gem "dotenv-rails"
+  gem 'rspec-rails'
 end
 
 group :development do
