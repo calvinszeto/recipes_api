@@ -28,4 +28,23 @@ RSpec.describe Api::V1::RecipesController do
       expect(json_response["name"]).to eq(recipe.name)
     end
   end
+
+  describe "PATCH update" do
+    it "updates the recipe" do
+      old_name = recipe.name
+      new_name = "Flan"
+      expect {
+        patch :update, params: { id: recipe.id, recipe: { name: new_name } }
+      }.to change{Recipe.find(recipe.id).name}.from(old_name).to(new_name)
+    end
+  end
+
+  describe "DELETE destroy" do
+    it "destroys the recipe" do
+      id = recipe.id
+      expect {
+        delete :destroy, params: { id: id }
+      }.to change{Recipe.count}.from(1).to(0)
+    end
+  end
 end
