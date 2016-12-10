@@ -16,7 +16,7 @@ RSpec.describe Api::V1::RecipesController do
     it "creates a new recipe" do
       new_recipe = FactoryGirl.build(:recipe)
       expect {
-        post :create, params: new_recipe.as_json
+        post :create, params: { recipe: new_recipe.as_json }
       }.to change{Recipe.count}.from(0).to(1)
       expect(Recipe.first.name).to eq(new_recipe.name)
     end
